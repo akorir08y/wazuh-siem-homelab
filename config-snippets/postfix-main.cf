@@ -1,0 +1,24 @@
+# Postfix main configuration file for Wazuh email alerts
+# Path: /etc/postfix/main.cf
+
+# Relay through Gmail (or change to your SMTP provider)
+relayhost = [smtp.gmail.com]:587
+
+# Enable SASL authentication
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+
+# Enable TLS encryption
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+smtp_use_tls = yes
+
+# Compatibility level (adjust if needed)
+compatibility_level = 2
+
+# Basic postfix settings (adjust domain/hostname as needed)
+myhostname = wazuh-manager.local
+mydomain = local
+myorigin = $mydomain
+inet_interfaces = localhost
+mydestination = $myhostname, localhost.$mydomain, localhost

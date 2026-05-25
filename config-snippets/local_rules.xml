@@ -1,0 +1,25 @@
+<!--
+  Wazuh - Manager - Custom local rules
+  Path: /var/ossec/etc/rules/local_rules.xml
+  Purpose: Override Apache rule to force email alerts + create brute force composite rule
+-->
+
+<group name="apache,attack,">
+
+  <!-- Override default Apache "invalid user" rule to always send email -->
+  <rule id="30309" level="7" overwrite="yes">
+    <if_sid>30301</if_sid>
+    <id>AH01618|AH01808|AH01790</id>
+    <options>alert_by_email</options>
+    <description>Apache: Attempt to login using a non-existent user.</description>
+    <group>invalid_login,pci_dss_11.4,pci_dss_10.2.4,pci_dss_10.2.5,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,</group>
+  </rule>
+
+  <!-- Composite rule: multiple authentication failures in a short time (potential brute force) -->
+  <rule id="100001" level="12" frequency="8" timeframe="120">
+    <if_matched_sid>30310</if_matched_sid>
+    <description>Apache: Multiple user authentication failures (potential brute force).</description>
+    <group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.3.1,nist_800_53_IA.10,</group>
+  </rule>
+
+</group>
