@@ -81,8 +81,8 @@ Send a test email:
 echo "Wazuh Postfix test" | mail -s "Test from Wazuh manager" your_destination@example.com
 
 If the test arrives, Postfix is ready.
----
 
+---
 ## Step 2 – Configure Wazuh Manager for Email Alerts
 
 Edit the Wazuh manager configuration file:
@@ -190,8 +190,8 @@ Append these rules:
 ### 3.3 Restart the Wazuh manager
 
 sudo systemctl restart wazuh-manager
----
 
+---
 ## Step 4 – Testing Email Alerts
 
 ### 4.1 Simulate an invalid login attempt on Apache
@@ -221,8 +221,8 @@ Location: /var/log/apache2/error.log
 Description: AH01618: user fakeuser not found
 
 If you trigger 8 failures in 2 minutes, rule 100001 sends an email with level 12.
----
 
+---
 ## Step 5 – Fine‑Tuning and Maintenance
 Reduce duplicate alerts
 

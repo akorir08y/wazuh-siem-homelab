@@ -15,7 +15,6 @@ Demonstrate how a Wazuh‑based SIEM/EDR can automatically detect an incoming co
 > Note: In a real scenario, the reputation list contains thousands of known malicious IPs. This PoC manually appends the “attacker” IP to the list to trigger the rule.
 
 ---
-
 ## Step 1 – Ubuntu Endpoint: Prepare the Agent and Apache
 
 ### 1.1 Install Apache web server
@@ -55,8 +54,8 @@ Edit /var/ossec/etc/ossec.conf on the Ubuntu endpoint and add the following insi
 sudo systemctl restart wazuh-agent
 
 Now the agent will forward every Apache access log entry to the Wazuh server.
----
 
+---
 ## Step 2 – Wazuh Server: Build a Reputation‑Based CDB List
 
 These steps are performed on the Wazuh server (RHEL‑based).
@@ -91,14 +90,14 @@ sudo rm -rf /tmp/iplist-to-cdblist.py
 ### 2.7 Set correct ownership and permissions
 
 sudo chown wazuh:wazuh /var/ossec/etc/lists/blacklist-alienvault
----
 
+---
 ## Step 3 – Configure Custom Rule and Active Response
 
-### 3.1 Create a custom rule in local_rules.xml
+### 3.1 Create a custom rule in local_rules.
 
-Edit /var/ossec/etc/rules/local_rules.xml on the Wazuh server and add the following:
-xml
+Edit /var/ossec/etc/rules/local_rules. on the Wazuh server and add the following:
+
 
 <group name="attack,">
   <rule id="100100" level="10">
@@ -119,7 +118,7 @@ Edit /var/ossec/etc/ossec.conf on the Wazuh server and add the blacklist-alienva
     <!-- Default ruleset -->
     <decoder_dir>ruleset/decoders</decoder_dir>
     <rule_dir>ruleset/rules</rule_dir>
-    <rule_exclude>0215-policy_rules.xml</rule_exclude>
+    <rule_exclude>0215-policy_rules.</rule_exclude>
     <list>etc/lists/audit-keys</list>
     <list>etc/lists/amazon/aws-eventnames</list>
     <list>etc/lists/security-eventchannel</list>
@@ -152,8 +151,8 @@ timeout – block only for 60 seconds (long enough to test; production values ma
 ### 3.4 Restart the Wazuh manager
 
 sudo systemctl restart wazuh-manager
----
 
+---
 ## Step 4 – Verify the PoC
 
 ### 4.1 Simulate a malicious request

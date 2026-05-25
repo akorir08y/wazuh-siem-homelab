@@ -11,7 +11,6 @@ Before you begin, ensure you have:
 > **Pro Tip:** Test this in a personal or non‑critical environment first.
 
 ---
-
 ## Step-by-Step Installation
 
 ### Step 1: Download the Installation Files
@@ -24,6 +23,7 @@ cd Wazuh
 curl -sO https://packages.wazuh.com/4.13/wazuh-install.sh
 curl -sO https://packages.wazuh.com/4.13/config.yml
 
+---
 ### Step 2: Download the Installation Files
 
 1. Find your server's static IP:
@@ -48,8 +48,8 @@ nodes:
       ip: "192.168.1.100"      # And here
 
 Save and exit (Ctrl+X, then Y, then Enter).
----
 
+---
 ### Step 3: Generate Certificates and Passwords
 
 1. Run the certificate generation script:
@@ -65,8 +65,8 @@ Store this output in a secure place (e.g., a password manager).
 ### Step 4: Run the Full Installation
 
 Execute the main installation. This is an all-in-one installation of the Wazuh Server, Dashboard and Manager (this will take a few minutes):
----
 
+---
 ### Step 5: Configure Firewall Rules
 
 1. Open the required ports for your Wazuh server:
@@ -88,8 +88,8 @@ sudo ufw allow 443/tcp
 sudo ufw allow 1514/udp
 sudo ufw allow 1515/udp
 sudo ufw enable
----
 
+---
 ### Step 6: Deploy Agents on Your Other Computers
 
 1. Open a browser and go to https://YOUR_SERVER_IP
@@ -115,8 +115,8 @@ sudo systemctl start wazuh-agent
 8. Edit /var/ossec/etc/ossec.conf on the agent and verify the <address> tag matches your server IP. Then restart:
 
 sudo systemctl restart wazuh-agent
----
 
+---
 ### Step 7: Set Up Log Rotation and Maintenance
 
 Wazuh already includes some log rotation defaults, but you can customise it.
@@ -139,6 +139,7 @@ sudo nano /etc/wazuh-indexer/jvm.options
 sudo systemctl restart wazuh-manager
 
 #### Create a Log Rotation File for Archives
+---
 
 sudo nano /etc/logrotate.d/wazuh-archives
 
@@ -173,6 +174,7 @@ sudo nano /etc/logrotate.d/wazuh-indexer
 
 
 #### Automated Cleanup with Cron (Optional)
+---
 
 Remove alert/archive files older than 14 days weekly:
 
