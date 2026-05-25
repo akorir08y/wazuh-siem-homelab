@@ -107,7 +107,7 @@ sudo chown wazuh:wazuh /var/ossec/etc/lists/blacklist-alienvault
 
 Edit /var/ossec/etc/rules/local_rules. on the Wazuh server and add the following:
 
-
+```
 <group name="attack,">
   <rule id="100100" level="10">
     <if_group>web|attack|attacks</if_group>
@@ -115,13 +115,14 @@ Edit /var/ossec/etc/rules/local_rules. on the Wazuh server and add the following
     <description>IP address found in AlienVault reputation database.</description>
   </rule>
 </group>
+```
 
 This rule triggers at level 10 whenever the source IP (srcip) of a web‑related alert matches an entry in our CDB list.
 
 ### 3.2 Include the CDB list in the main ossec.conf
 
 Edit /var/ossec/etc/ossec.conf on the Wazuh server and add the blacklist-alienvault line inside the <ruleset> section:
-
+```
 <ossec_config>
   <ruleset>
     <!-- Default ruleset -->
@@ -138,11 +139,12 @@ Edit /var/ossec/etc/ossec.conf on the Wazuh server and add the blacklist-alienva
     <rule_dir>etc/rules</rule_dir>
   </ruleset>
 </ossec_config>
+```
 
 ### 3.3 Add active response block – firewall‑drop
 
 Still in /var/ossec/etc/ossec.conf, add the following <active-response> block (inside <ossec_config>):
-
+```
 <active-response>
   <disabled>no</disabled>
   <command>firewall-drop</command>
@@ -150,6 +152,7 @@ Still in /var/ossec/etc/ossec.conf, add the following <active-response> block (i
   <rules_id>100100</rules_id>
   <timeout>60</timeout>
 </active-response>
+```
 
 firewall-drop – built‑in command that uses iptables to block the source IP.
 
@@ -158,8 +161,9 @@ location – local means execute on the agent that received the attack.
 timeout – block only for 60 seconds (long enough to test; production values may be longer).
 
 ### 3.4 Restart the Wazuh manager
-
+```
 sudo systemctl restart wazuh-manager
+```
 
 ---
 ## Step 4 – Verify the PoC
@@ -178,7 +182,7 @@ Log into the Wazuh dashboard → Security events.
 Search for rule ID 100100.
 
 You should see an alert with the description:
-    IP address found in AlienVault reputation database.
+IP address found in AlienVault reputation database.
 
 ### 4.3 Confirm active response
 
