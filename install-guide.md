@@ -48,6 +48,7 @@ nodes:
       ip: "192.168.1.100"      # And here
 
 Save and exit (Ctrl+X, then Y, then Enter).
+---
 
 ### Step 3: Generate Certificates and Passwords
 
@@ -64,6 +65,7 @@ Store this output in a secure place (e.g., a password manager).
 ### Step 4: Run the Full Installation
 
 Execute the main installation. This is an all-in-one installation of the Wazuh Server, Dashboard and Manager (this will take a few minutes):
+---
 
 ### Step 5: Configure Firewall Rules
 
@@ -86,6 +88,7 @@ sudo ufw allow 443/tcp
 sudo ufw allow 1514/udp
 sudo ufw allow 1515/udp
 sudo ufw enable
+---
 
 ### Step 6: Deploy Agents on Your Other Computers
 
@@ -112,6 +115,7 @@ sudo systemctl start wazuh-agent
 8. Edit /var/ossec/etc/ossec.conf on the agent and verify the <address> tag matches your server IP. Then restart:
 
 sudo systemctl restart wazuh-agent
+---
 
 ### Step 7: Set Up Log Rotation and Maintenance
 

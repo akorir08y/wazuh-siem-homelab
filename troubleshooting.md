@@ -18,6 +18,7 @@ Possible causes and solutions:
 3. Agent registration missing  
    - Re‑run the agent deployment command from the dashboard.  
    - The command includes `WAZUH_MANAGER='YOUR_SERVER_IP'`.
+---
 
 ## Cannot Access Wazuh Dashboard
 

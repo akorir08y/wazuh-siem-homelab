@@ -55,6 +55,7 @@ Edit /var/ossec/etc/ossec.conf on the Ubuntu endpoint and add the following insi
 sudo systemctl restart wazuh-agent
 
 Now the agent will forward every Apache access log entry to the Wazuh server.
+---
 
 ## Step 2 – Wazuh Server: Build a Reputation‑Based CDB List
 
@@ -90,6 +91,7 @@ sudo rm -rf /tmp/iplist-to-cdblist.py
 ### 2.7 Set correct ownership and permissions
 
 sudo chown wazuh:wazuh /var/ossec/etc/lists/blacklist-alienvault
+---
 
 ## Step 3 – Configure Custom Rule and Active Response
 
@@ -150,6 +152,7 @@ timeout – block only for 60 seconds (long enough to test; production values ma
 ### 3.4 Restart the Wazuh manager
 
 sudo systemctl restart wazuh-manager
+---
 
 ## Step 4 – Verify the PoC
 
