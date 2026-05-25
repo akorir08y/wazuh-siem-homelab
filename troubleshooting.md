@@ -11,13 +11,18 @@ Possible causes and solutions:
    - Verify the `<address>` tag contains your Wazuh manager’s static IP.  
    - Correct and restart: 
 
-```sudo systemctl restart wazuh-agent```
+```
+sudo systemctl restart wazuh-agent
+```
 
 2. Firewall blocking ports 1514/1515 (UDP)  
    - Ensure your cloud firewall or local `ufw` allows inbound UDP on 1514 (agent → manager) and 1515 (manager → agent).  
    - Example: 
 
-```sudo ufw allow 1514/udp; sudo ufw allow 1515/udp```
+```
+sudo ufw allow 1514/udp; 
+sudo ufw allow 1515/udp
+```
 
 3. Agent registration missing  
    - Re‑run the agent deployment command from the dashboard.  
@@ -32,7 +37,9 @@ Solutions:
 - Check that port 443 (HTTPS) is open in your firewall.  
 - Confirm the Wazuh dashboard service is running:  
 
-```sudo systemctl status wazuh-dashboard```  
+```
+sudo systemctl status wazuh-dashboard
+```  
 
 - Verify the URL: `https://<YOUR_SERVER_IP>` (not `http`).  
 - If using a self‑signed certificate, your browser will show a warning – proceed manually.
